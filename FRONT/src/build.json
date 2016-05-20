@@ -1,0 +1,16 @@
+{
+   "id": "TODOLIST",
+   "build": "000002",
+   "pathPrefix": "",
+   "updatePage": {
+      "type": 1,
+      "path": [
+         "../index.html"
+      ]
+   },
+   "cssCompressWithout": [],
+   "codeCompressWithout": [],
+   "tmpCompressWithout": [],
+   "jsNoCompress": [],
+   "cssNoCompress": []
+}

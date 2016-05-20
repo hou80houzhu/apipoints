@@ -1,0 +1,182 @@
+<!--[login]-->
+<div class="login-logo"></div>
+<div class="login-form" data-group="form">
+    <div class="login-form-field">
+        <!--<div class="login-form-field-label">username</div>-->
+        <div class="login-form-field-input"><input type="text" placeholder="username" data-groupi="username"></div>
+    </div>
+    <div class="login-form-field">
+        <!--<div class="login-form-field-label">password</div>-->
+        <div class="login-form-field-input"><input type="text" placeholder="password" data-groupi="password"></div>
+    </div>
+    <div class="login-form-btn" data-groupi="submit">Login</div>
+</div>
+<!--[maincontainer]-->
+<div class="mc-left">
+    <div class="mc-left-a">
+        <@module type="{{option.selectType}}"/>
+    </div>
+    <div class="mc-left-b">
+        <@module type="{{option.treeType}}"/>
+    </div>
+</div>
+<div class="mc-page">
+    <div class="mc-middle" data-find="middlecon">
+        <div class="mc-middle-title">
+            <div class="mc-middle-title-a">API Editor</div>
+            <div class="mc-middle-title-b">
+                <div class="mc-middle-title-btn">
+                    <div class="mc-middle-title-btn-a"><i class="fa fa-hdd-o"></i></div>
+                </div>
+                <div class="mc-middle-title-btn" data-find="setting">
+                    <div class="mc-middle-title-btn-a"><i class="fa fa-gears"></i></div>
+<!--                    <div class="mc-middle-title-btn-list">
+                        <div class="mc-middle-title-btn-list-item" data-find="setfontsize">fontSize</div>
+                        <div class="mc-middle-title-btn-list-item" data-find="settheme">themes</div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="mc-middle-editor">
+            <@module type="{{option.editType}}"/>
+        </div>
+    </div>
+    <div class="mc-right" data-find='docerrorp'>
+        <div class="mc-right-error" data-find='docerror'></div>
+        <div class="mc-right-doc">
+            <@module type="{{option.docType}}"/>
+        </div>
+        <div class="mc-right-btns">
+            <div class="mc-right-btns-btn" data-find="apitest"><i class="fa fa-plug"></i> debug</div>
+            <div class="mc-right-btns-btn" data-find="simulate"><i class="fa fa-clipboard"></i> client</div>
+        </div>
+    </div>
+</div>
+<div class="mc-top">
+    <div class="mc-top-logo"></div>
+    <div class="mc-top-btns">
+        <div class="mc-top-btn"><i class="fa fa-columns"></i></div>
+    </div>
+</div>
+<!--[docerror]-->
+<div class="docerror-title">Error</div>
+<div class="docerror-desc"><%=data.message;%></div>
+<div class="docerror-gotoline" data-find="gotoline" @cache(data.mark)>
+    line<span><%=data.mark.line;%></span>
+    column<span><%=data.mark.column;%></span>
+    position<span><%=data.mark.position;%></span>
+</div>
+<!--[aceditor]-->
+<div class="aceditor-con"></div>
+<!--[doc]-->
+<div class="doc-head">
+    <div class="doc-head-title"><%=data.title||'-';%></div>
+    <div class="doc-head-info">
+        <div class="doc-head-info-author"><i class="fa fa-user"></i><%=' '+(data.author||'-');%></div>
+        <div class="doc-head-info-version"><i class="fa fa-calendar"></i><%=' '+(data.version||'-');%></div>
+    </div>
+    <div class="doc-head-desc"><%=data.desc||'-';%></div>
+</div>
+<div class="doc-request">Request</div>
+<div class="doc-mid">
+    <div class="doc-mid-type">TYPE:<%=' '+(data.type||'-');%></div>
+    <div class="doc-mid-url">URI:<%=' '+(data.path||'-');%></div>
+</div>
+<div class="doc-parameters">
+    <div class="doc-parameters-title">Parameters</div>
+    <table>
+        <tr class="head">
+            <td>name</td>
+            <td>description</td>
+            <td>type</td>
+            <td>required</td>
+            <td>check</td>
+        </tr>
+        <%for(var i in data.parameters){%>
+        <tr>
+            <td><%=data.parameters[i].key||'-';%></td>
+            <td class="asleft"><%=data.parameters[i].desc||'-';%></td>
+            <td><%=data.parameters[i].type||'-';%></td>
+            <td><%=data.parameters[i].required||'-';%></td>
+            <%var t='';%>
+            <%if(data.parameters[i].check){%>
+                <%for(var m in data.parameters[i].check){%>
+                <%t+='<div class=\'check\'><span class=\'check-a\'>'+m+'</span>:<span class=\'check-b\'>'+data.parameters[i].check[m]+'</span></div>';%>
+                <%}%>
+            <%}else{%>
+            <%t='-';%>
+            <%}%>
+            <td><%=t;%></td>
+        </tr>
+        <%}%>
+    </table>
+</div>
+<div class="doc-response">
+    <div class="doc-response-title">Response</div>
+    <table>
+        <tr class="head">
+            <td>code</td>
+            <td>description</td>
+            <td>data</td>
+            <td>msg</td>
+        </tr>
+        <%for(var i in data.response){%>
+        <tr>
+            <td><%=data.response[i].code;%></td>
+            <td class="asleft"><%=data.response[i].desc||'-';%></td>
+            <%if(data.response[i].type==='array'){%>
+            <td>[<%=data.response[i].data||'-';%>]</td>
+            <%}else{%>
+            <td><%=data.response[i].data||'-';%></td>
+            <%}%>
+            <td><%=data.response[i].msg||'-';%></td>
+        </tr>
+        <%}%>
+    </table>
+</div>
+<div class="doc-entity">
+    <div class="doc-entity-title">Entity</div>
+    <%for(var i in data.entity){%>
+    <div class="doc-entity-con">
+        <div class="doc-entity-con-title"><%=i;%></div>
+        <div class="doc-entity-con-body jsontree" data-find='entity' @cache(data.entity[i])></div>
+    </div>
+    <%}%>
+</div>
+<!--[popup]-->
+<div class="popup-head"><%=option.title;%></div>
+<div class="popup-body">
+    <div class="popup-body-inner" data-find="inner"></div>
+</div>
+<div class="popup-foot">
+    <%for(var i in option.btns){%>
+    <div class="popup-foot-btn" data-find="btn" @cache(option.btns[i])><%=option.btns[i].name;%></div>
+    <%}%>
+</div>
+<!--[flipeditor]-->
+<div class="flipeditor-con" data-find="editor"></div>
+<div class="filpeditor-desc" data-find="desc">desc</div>
+<!--[dropselect]-->
+<div class="dropselect-title">
+    <div class="dropselect-title-a" data-find="title"><i class="fa fa-refresh fa-spin"></i></div>
+    <div class="dropselect-title-b" data-find="add"><i class="fa fa-plus"></i></div>
+</div>
+<div class="dropselect-add" data-group="add">
+    <div class="dropselect-add-a">
+        <input type="" placeholder="project name" data-groupi="input"/>
+    </div>
+    <div class="dropselect-add-b" data-groupi="check"><i class="fa fa-check"></i></div>
+</div>
+<div class="dropselect-list" data-find="items">
+    <%for(var i in data){%>
+    <div class="dropselect-list-item" data-group="item" @cache(data[i])>
+        <div class="dropselect-list-item-a" data-groupi="name"><%=data[i].name;%></div>
+        <div class="dropselect-list-item-b" data-groupi="remove"><i class="fa fa-minus"></i></div>
+    </div>
+    <%}%>
+</div>
+<!--[dropselectitem]-->
+<div class="dropselect-list-item" data-group="item" @cache(data)>
+    <div class="dropselect-list-item-a" data-groupi="name"><%=data.name;%></div>
+    <div class="dropselect-list-item-b" data-groupi="remove"><i class="fa fa-minus"></i></div>
+</div>

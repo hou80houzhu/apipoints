@@ -1,0 +1,31 @@
+{
+    "code": "1",
+    "msg": "",
+    "data": [
+        {
+            "id": "0",
+            "name": "首页",
+            "img": "fa fa-home",
+            "view": "admin.main.quickmenu",
+            "option": "admin.root.quickmenu",
+            "list": []
+        },
+        {
+            "id": "sys",
+            "name": "系统管理",
+            "img": "fa fa-bars",
+            "view": "admin.main.maincontainer",
+            "option": "",
+            "list": [
+                {
+                    "id": "user",
+                    "name": "用户管理",
+                    "img": "fa fa-file-text-o",
+                    "view": "admin.group.tablegroup",
+                    "option": "admin.option.user.user",
+                    "list": []
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+.jsontree .node .name {
+  line-height: 20px;
+  cursor: default; }
+.jsontree .node > .list {
+  margin-left: 10px;
+  display: none; }
+  .jsontree .node > .list .name {
+    color: #B771BD; }
+    .jsontree .node > .list .name > i {
+      color: black; }
+.jsontree .node.active > .name > i {
+  -webkit-transform: rotate(90deg); }
+.jsontree .node.active > .list {
+  display: block; }
+.jsontree .node span {
+  color: black;
+  padding: 0 3px 0 3px; }
+
+/*# sourceMappingURL=jsontree.css.map */

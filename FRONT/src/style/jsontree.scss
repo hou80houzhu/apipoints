@@ -1,0 +1,31 @@
+.jsontree{
+    .node{
+        .name{
+            line-height:20px;
+            cursor:default;
+        }
+        >.list{
+            margin-left:10px;
+            display:none;
+            .name{
+                color:#B771BD;
+                >i{
+                    color:black;
+                }
+            }
+        }
+        &.active{
+            >.name>i{
+                -webkit-transform:rotate(90deg);
+            }
+            >.list{
+                display:block;
+            }
+        }
+        span{
+            color:black;
+            padding:0 3px 0 3px;
+        }
+    }
+
+}

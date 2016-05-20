@@ -1,0 +1,86 @@
+title: user regist
+desc: regist user data and someing to description
+version: 1.0
+author: hou80houzhu
+path: host/api/adduser
+type: POST
+parameters:
+  - key: name
+    desc: username
+    type: string
+    required: true
+    check:
+      maxlength: 20
+      unique: true
+      reg: 55
+  - key: password
+    desc: user password
+    type: string
+    required: true
+  - key: repassword
+    desc: password two times
+    type: string
+    required: true
+response:
+  - code: 1
+    desc: response success
+    type: array
+    data: user2
+  - code: 0
+    desc: response error
+    msg: username is repeat
+    
+entity:
+  user: 
+    username:
+      type: string
+      desc: user name
+      format: string
+      default: aa
+    password:
+      type: string
+      desc: user password
+      format: string
+      default: aa
+  user2: 
+    username:
+      type: string
+      desc: user name
+      format: string
+      default: aa
+    password:
+      type: string
+      desc: user password
+      format: string
+      default: aa
+    list:
+      - username: 
+          type: string
+          desc: username
+          format: string
+          default: aa
+        password:
+          type: string
+          desc: username
+          format: string 
+          default: aa
+      - username: 
+          type: string
+          desc: username
+          format: string
+          default: aa
+        password:
+          type: string
+          desc: username
+          format: string 
+          default: aa
+      - username: 
+          type: string
+          desc: username
+          format: string
+          default: aa
+        password:
+          type: string
+          desc: username
+          format: string 
+          default: aa

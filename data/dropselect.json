@@ -1,0 +1,11 @@
+{
+    "code": "1",
+    "data":[
+        {"name":"system 01","value":0},
+        {"name":"system 02","value":0},
+        {"name":"system 03","value":0},
+        {"name":"system 04","value":0},
+        {"name":"system 05","value":0},
+        {"name":"system 06","value":0}
+    ]
+}
