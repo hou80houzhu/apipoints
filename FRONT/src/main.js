@@ -213,12 +213,13 @@ Module({
     name: "doc",
     extend: "viewgroup",
     className: "doc",
-    layout: "",
+    layout: module.getTemplate("@temp", "doc"),
+    autodomc:true,
     setData: function (data) {
         if (data) {
             this.cachedata = data;
-            $.template(module.getTemplate("@temp", "doc")).renderTo(this.dom, data);
-            this.delegate();
+            $.extend(this.option,data);
+            this.autodom.refresh();
             this.finders("entity").each(function () {
                 $(this).jsontree($(this).cache());
             });
