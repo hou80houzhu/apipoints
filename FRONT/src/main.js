@@ -7,6 +7,7 @@
  * @require jsontree;
  * @include admin.form;
  */
+console.log(module);
 Module({
     name: "login",
     extend: "viewgroup",
@@ -214,12 +215,12 @@ Module({
     extend: "viewgroup",
     className: "doc",
     layout: module.getTemplate("@temp", "doc"),
-    autodomc:true,
+    autodom:true,
     setData: function (data) {
         if (data) {
             this.cachedata = data;
-            $.extend(this.option,data);
-            this.autodom.refresh();
+            this.option=data;
+            this.update();
             this.finders("entity").each(function () {
                 $(this).jsontree($(this).cache());
             });
