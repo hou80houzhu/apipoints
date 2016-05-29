@@ -215,7 +215,7 @@ Module({
     extend: "viewgroup",
     className: "doc",
     layout: module.getTemplate("@temp", "doc"),
-    autodom:true,
+    autoupdate:true,
     setData: function (data) {
         if (data) {
             this.cachedata = data;
